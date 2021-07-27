@@ -777,7 +777,7 @@ static int n_hdlc_tty_ioctl(struct tty_struct *tty, struct file *file,
 		case TCOFLUSH:
 			flush_tx_queue(tty);
 		}
-		/* fall through to default */
+		/* fall through - to default */
 
 	default:
 		error = n_tty_ioctl_helper(tty, file, cmd, arg);
@@ -967,6 +967,11 @@ static int __init n_hdlc_init(void)
 	return status;
 	
 }	/* end of init_module() */
+
+#ifdef CONFIG_SPARC
+#undef __exitdata
+#define __exitdata
+#endif
 
 static const char hdlc_unregister_ok[] __exitdata =
 	KERN_INFO "N_HDLC: line discipline unregistered\n";

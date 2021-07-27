@@ -131,5 +131,3 @@ int page_numastate_xchg_last(struct page *page, int numastate)
 	return last_numastate;
 }
 #endif
-
-
